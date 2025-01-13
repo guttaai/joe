@@ -9,6 +9,8 @@ export interface TokenData
     name: string;
     symbol: string;
     mint: string;
+    uri: string;
+    pumpFunUrl: string;
 }
 
 export interface OperatorEvents

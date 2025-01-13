@@ -26,7 +26,7 @@ class Console
 
         this.operator.on('tokenReceived', (token: TokenData) =>
         {
-            console.log(JSON.stringify(token, null, 2));
+            console.log(token.pumpFunUrl);
         });
     }
 
