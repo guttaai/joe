@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "@types/socket.io-client": "^3.0.0",
     "@types/ws": "^8.5.13",
+    "axios": "^1.7.9",
     "eventemitter3": "^5.0.1",
+    "socket.io-client": "^4.8.1",
     "ws": "^8.18.0"
   }
 }

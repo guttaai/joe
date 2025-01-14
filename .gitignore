@@ -28,3 +28,6 @@ npm-debug.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# Temp
+.sandbox/

@@ -1,5 +1,6 @@
 import { PumpFunOperator } from './operators/PumpFunOperator';
-import { ConnectionStatus, TokenData } from './types/events';
+import { ConnectionStatus } from './types/events';
+import { TokenMetadata } from './types/tokenMetadata';
 import { CONFIG } from './config';
 
 class Console
@@ -24,10 +25,18 @@ class Console
             console.error('Error:', error.message);
         });
 
-        this.operator.on('tokenReceived', (token: TokenData) =>
+        this.operator.on('tokenReceived', (token: TokenMetadata) =>
         {
-            console.log(token.pumpFunUrl);
+            this.processToken(token);
         });
+    }
+
+    private processToken(token: TokenMetadata): void
+    {
+        console.log('\nNew Token Created:');
+        console.log('------------------');
+        console.log(JSON.stringify(token, null, 2));
+        console.log('------------------\n');
     }
 
     public async start(): Promise<void>
