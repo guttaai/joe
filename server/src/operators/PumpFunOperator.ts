@@ -1,5 +1,5 @@
 import { WebSocketOperator } from '../core/operators/WebSocketOperator';
-import { TokenData, ConnectionStatus } from '../types/events';
+import { ConnectionStatus } from '../types/events';
 import WebSocket from 'ws';
 import { TokenMetadata } from '../types/tokenMetadata';
 
