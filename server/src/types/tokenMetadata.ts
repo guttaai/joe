@@ -6,4 +6,15 @@ export interface TokenMetadata
     website: string | null;
     symbol: string;
     name: string;
+    send?: boolean;
+    algorithmResults?: {
+        passed: boolean;
+        criticalCheckFailed?: boolean;
+        checks: {
+            name: string;
+            status: string;
+            message?: string;
+            isCritical?: boolean;
+        }[];
+    }[];
 }
