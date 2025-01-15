@@ -32,7 +32,7 @@ const handleTokenSelect = (token: TokenMetadata) =>
                     <TitleLabel text="OPERATORS" class="mt-4" />
                     <div class="flex flex-wrap gap-2">
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             PumpFun NewToken</div>
                     </div>
                 </div>
@@ -46,16 +46,16 @@ const handleTokenSelect = (token: TokenMetadata) =>
                     <TitleLabel text="ALGORITHMS" class="mt-4" />
                     <div class="flex flex-wrap gap-2">
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm  bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             Uniqueness</div>
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm  bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             Rugcheck</div>
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm  bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             Website presence</div>
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm  bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             X or Telegram presence</div>
                     </div>
                 </div>
@@ -63,20 +63,20 @@ const handleTokenSelect = (token: TokenMetadata) =>
                     <TitleLabel text="FUNCTIONS" class="mt-4" />
                     <div class="flex flex-wrap gap-2">
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm  bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             Browser</div>
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm  bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             Crawler</div>
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm  bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             Buy</div>
                     </div>
                 </div>
             </div>
 
             <!-- Middle Column -->
-            <div class="bg-gray-950 rounded-lg p-4 overflow-y-auto">
+            <div class="bg-gray-950 rounded-lg p-4 overflow-y-auto hide-scrollbar">
                 <TaskFeed @select-token="handleTokenSelect" />
             </div>
 
@@ -95,3 +95,16 @@ const handleTokenSelect = (token: TokenMetadata) =>
         </div>
     </div>
 </template>
+
+<style scoped>
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+</style>
