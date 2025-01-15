@@ -7,7 +7,8 @@ defineProps<{
 </script>
 
 <template>
-    <div class="p-4 mb-4 rounded-lg bg-gray-800/50 backdrop-blur">
+    <div class="p-4 mb-4 rounded-lg bg-gray-800/50 backdrop-blur cursor-pointer hover:bg-gray-800/70 transition-colors"
+        @click="$emit('click')">
         <div class="flex items-center justify-start gap-2 text-lg">
             <span class="font-semibold text-blue-100">{{ token.symbol }}</span>
             <span class="text-gray-700">•</span>

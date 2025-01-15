@@ -7,6 +7,15 @@ const tokens = ref<TokenMetadata[]>([]);
 const ws = ref<WebSocket | null>(null);
 const connectionStatus = ref<string>('Disconnected');
 
+const emit = defineEmits<{
+    'select-token': [token: TokenMetadata]
+}>();
+
+const handleTokenClick = (token: TokenMetadata) =>
+{
+    emit('select-token', token);
+};
+
 const connect = () =>
 {
     ws.value = new WebSocket('ws://localhost:2050');
@@ -58,7 +67,7 @@ onUnmounted(() =>
             </div>
         </div>
         <div class="space-y-4">
-            <TaskItem v-for="token in tokens" :key="token.mint" :token="token" />
+            <TaskItem v-for="token in tokens" :key="token.mint" :token="token" @click="handleTokenClick(token)" />
         </div>
     </div>
 </template>
