@@ -50,8 +50,12 @@ onUnmounted(() =>
 
 <template>
     <div>
-        <div class="mb-4 text-sm" :class="connectionStatus === 'Connected' ? 'text-green-600' : 'text-red-600'">
-            Status: {{ connectionStatus }}
+        <div class="flex justify-between items-center mb-4">
+            <div class="text-xs text-gray-500 tracking-[0.2em]">PUMP.FUN FEED</div>
+            <div class="flex items-center">
+                <div class="w-2 h-2 rounded-full"
+                    :class="connectionStatus === 'Connected' ? 'bg-green-500' : 'bg-orange-500'"></div>
+            </div>
         </div>
         <div class="space-y-4">
             <TaskItem v-for="token in tokens" :key="token.mint" :token="token" />

@@ -8,6 +8,11 @@ import TaskFeed from './TaskFeed.vue';
         <div class="grid grid-cols-3 gap-1">
             <!-- Left Column -->
             <div class="bg-gray-950 rounded-lg p-4">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="text-xs text-gray-500 tracking-[0.2em]">JOE PROJECT</div>
+                    <div class="flex items-center">
+                    </div>
+                </div>
                 <div>
                     <div class="text-white">Instructions</div>
                     <div>
@@ -47,7 +52,11 @@ import TaskFeed from './TaskFeed.vue';
 
             <!-- Right Column -->
             <div class="bg-gray-950 rounded-lg p-4">
-                Right Column
+                <div class="flex justify-between items-center mb-4">
+                    <div class="text-xs text-gray-500 tracking-[0.2em]">DETAILS</div>
+                    <div class="flex items-center">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
