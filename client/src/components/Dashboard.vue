@@ -14,7 +14,7 @@ const handleTokenSelect = (token: TokenMetadata) =>
 </script>
 
 <template>
-    <div class="max-w-[1500px] mx-auto p-6">
+    <div class="max-w-[1580px] mx-auto p-6">
         <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
         <div class="grid grid-cols-4 gap-1 h-[calc(100vh-120px)]">
             <!-- Left Column -->
