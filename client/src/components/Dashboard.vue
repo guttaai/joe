@@ -14,17 +14,17 @@ const handleTokenSelect = (token: TokenMetadata) =>
 </script>
 
 <template>
-    <div class="max-w-[1200px] mx-auto p-6">
+    <div class="max-w-[1500px] mx-auto p-6">
         <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
-        <div class="grid grid-cols-3 gap-1">
+        <div class="grid grid-cols-4 gap-1 h-[calc(100vh-120px)]">
             <!-- Left Column -->
-            <div class="bg-gray-950 rounded-lg p-4">
+            <div class="bg-gray-950 rounded-lg p-3 overflow-y-auto">
                 <TitleLabel text="JOE PROJECT" />
                 <div>
                     <TitleLabel text="INSTRUCTIONS" />
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex flex-wrap gap-1">
                         <div
-                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            class="px-2 py-1 text-sm bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
                             AI-related</div>
                     </div>
                 </div>
@@ -76,13 +76,21 @@ const handleTokenSelect = (token: TokenMetadata) =>
             </div>
 
             <!-- Middle Column -->
-            <div class="bg-gray-950 rounded-lg p-4">
+            <div class="bg-gray-950 rounded-lg p-4 overflow-y-auto">
                 <TaskFeed @select-token="handleTokenSelect" />
             </div>
 
             <!-- Right Column -->
-            <div class="bg-gray-950 rounded-lg p-4">
+            <div class="bg-gray-950 rounded-lg p-4 overflow-y-auto">
                 <Details :details="{ selectedToken }" />
+            </div>
+
+            <!-- Positions Column -->
+            <div class="bg-gray-950 rounded-lg p-4 overflow-y-auto">
+                <TitleLabel text="POSITIONS" />
+                <div class="mt-4 flex items-center justify-center h-[calc(100%-2rem)] text-gray-500">
+                    No active positions
+                </div>
             </div>
         </div>
     </div>
