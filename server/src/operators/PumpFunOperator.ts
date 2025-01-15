@@ -74,7 +74,9 @@ export class PumpFunOperator extends WebSocketOperator
                             mint: jsonData.mint,
                             twitter: jsonData.twitter || null,
                             telegram: jsonData.telegram || null,
-                            website: jsonData.website || null
+                            website: jsonData.website || null,
+                            symbol: jsonData.symbol || null,
+                            name: jsonData.name || null
                         };
 
                         this.emit('tokenReceived', tokenData);

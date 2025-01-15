@@ -4,4 +4,6 @@ export interface TokenMetadata
     twitter: string | null;
     telegram: string | null;
     website: string | null;
+    symbol: string;
+    name: string;
 }
