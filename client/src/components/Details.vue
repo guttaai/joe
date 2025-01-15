@@ -2,6 +2,7 @@
 import type { TokenMetadata } from '../../../server/src/types/tokenMetadata';
 import { CheckBadgeIcon, XCircleIcon, ArrowPathIcon } from '@heroicons/vue/24/solid'
 import { LinkIcon } from '@heroicons/vue/24/outline'
+import TitleLabel from './TitleLabel.vue';
 
 interface Props
 {
@@ -21,9 +22,7 @@ const getPumpFunUrl = (mint: string) => `https://pump.fun/coin/${mint}`;
 
 <template>
     <div>
-        <div class="flex justify-between items-center mb-4">
-            <div class="text-xs text-gray-500 tracking-[0.2em]">DETAILS</div>
-        </div>
+        <TitleLabel text="DETAILS" />
 
         <div v-if="details.selectedToken" class="space-y-4">
             <!-- New Token Info Header -->

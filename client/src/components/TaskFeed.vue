@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import type { TokenMetadata } from '../../../server/src/types/tokenMetadata';
 import TaskItem from './TaskItem.vue';
+import TitleLabel from './TitleLabel.vue';
 
 const tokens = ref<TokenMetadata[]>([]);
 const ws = ref<WebSocket | null>(null);
@@ -61,13 +62,12 @@ onUnmounted(() =>
 
 <template>
     <div>
-        <div class="flex justify-between items-center mb-4">
-            <div class="text-xs text-gray-500 tracking-[0.2em]">PUMP.FUN FEED</div>
-            <div class="flex items-center">
+        <TitleLabel text="PUMP.FUN FEED" :right-content="true">
+            <template #right>
                 <div class="w-2 h-2 rounded-full"
                     :class="connectionStatus === 'Connected' ? 'bg-green-500' : 'bg-orange-500'"></div>
-            </div>
-        </div>
+            </template>
+        </TitleLabel>
         <div class="space-y-4">
             <TaskItem v-for="token in tokens" :key="token.mint" :token="token"
                 :is-selected="selectedTokenMint === token.mint" @click="handleTokenClick(token)" />

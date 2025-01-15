@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import TaskFeed from './TaskFeed.vue';
 import Details from './Details.vue';
 import type { TokenMetadata } from '../../../server/src/types/tokenMetadata';
+import TitleLabel from './TitleLabel.vue';
 
 const selectedToken = ref<TokenMetadata | null>(null);
 
@@ -18,11 +19,7 @@ const handleTokenSelect = (token: TokenMetadata) =>
         <div class="grid grid-cols-3 gap-1">
             <!-- Left Column -->
             <div class="bg-gray-950 rounded-lg p-4">
-                <div class="flex justify-between items-center mb-4">
-                    <div class="text-xs text-gray-500 tracking-[0.2em]">JOE PROJECT</div>
-                    <div class="flex items-center">
-                    </div>
-                </div>
+                <TitleLabel text="JOE PROJECT" />
                 <div>
                     <div class="text-white">Instructions</div>
                     <div>
