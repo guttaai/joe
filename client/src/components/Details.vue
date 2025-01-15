@@ -92,6 +92,20 @@ const getPumpFunUrl = (mint: string) => `https://pump.fun/coin/${mint}`;
                 </div>
             </div>
 
+            <!-- New Status Block -->
+            <div class="p-4 rounded-lg" :class="details.selectedToken.send ? 'bg-green-900/50' : 'bg-amber-900/50'">
+                <div class="flex items-center">
+                    <span class="text-4xl w-16">
+                        {{ details.selectedToken.send ? '🚀' : '💩' }}
+                    </span>
+                    <span class="flex-1 text-gray-100 tracking-[0.2em] text-sm text-center">
+                        {{ details.selectedToken.send ? 'SEND' : 'FLUSH' }}
+                    </span>
+                    <span class="w-16"></span>
+                </div>
+            </div>
+
+            <!-- JSON Display -->
             <div class="p-4 rounded-lg bg-gray-800/50">
                 <pre
                     class="text-sm text-gray-300 overflow-x-auto">{{ JSON.stringify(details.selectedToken, null, 2) }}</pre>
