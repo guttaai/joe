@@ -6,6 +6,7 @@ import TaskItem from './TaskItem.vue';
 const tokens = ref<TokenMetadata[]>([]);
 const ws = ref<WebSocket | null>(null);
 const connectionStatus = ref<string>('Disconnected');
+const selectedTokenMint = ref<string | null>(null);
 
 const emit = defineEmits<{
     'select-token': [token: TokenMetadata]
@@ -13,6 +14,7 @@ const emit = defineEmits<{
 
 const handleTokenClick = (token: TokenMetadata) =>
 {
+    selectedTokenMint.value = token.mint;
     emit('select-token', token);
 };
 
@@ -67,7 +69,8 @@ onUnmounted(() =>
             </div>
         </div>
         <div class="space-y-4">
-            <TaskItem v-for="token in tokens" :key="token.mint" :token="token" @click="handleTokenClick(token)" />
+            <TaskItem v-for="token in tokens" :key="token.mint" :token="token"
+                :is-selected="selectedTokenMint === token.mint" @click="handleTokenClick(token)" />
         </div>
     </div>
 </template>

@@ -2,7 +2,8 @@
 import type { TokenMetadata } from '../../../server/src/types/tokenMetadata';
 
 defineProps<{
-    token: TokenMetadata
+    token: TokenMetadata,
+    isSelected?: boolean
 }>();
 
 const getBackgroundClass = (token: TokenMetadata) =>
@@ -24,7 +25,8 @@ const getBackgroundClass = (token: TokenMetadata) =>
     <div :class="[
         'p-4 mb-4 rounded-lg backdrop-blur cursor-pointer transition-colors',
         'hover:bg-opacity-70',
-        getBackgroundClass(token)
+        getBackgroundClass(token),
+        { 'outline outline-2 outline-orange-500 outline-dashed': isSelected }
     ]" @click="$emit('click')">
         <div class="flex items-center justify-start gap-2 text-lg">
             <span class="font-semibold text-blue-100">{{ token.symbol }}</span>
