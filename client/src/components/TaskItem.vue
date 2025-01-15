@@ -7,7 +7,11 @@ defineProps<{
 </script>
 
 <template>
-    <div class="p-4 border rounded-lg shadow-sm mb-4 bg-white">
-        <pre class="text-sm text-gray-700 whitespace-pre-wrap">{{ JSON.stringify(token, null, 2) }}</pre>
+    <div class="p-4 mb-4 rounded-lg bg-gray-800/50 backdrop-blur">
+        <div class="flex items-center justify-start gap-2 text-lg">
+            <span class="font-semibold text-blue-100">{{ token.symbol }}</span>
+            <span class="text-gray-700">•</span>
+            <span class="text-gray-500">{{ token.name }}</span>
+        </div>
     </div>
 </template>
