@@ -21,33 +21,56 @@ const handleTokenSelect = (token: TokenMetadata) =>
             <div class="bg-gray-950 rounded-lg p-4">
                 <TitleLabel text="JOE PROJECT" />
                 <div>
-                    <div class="text-white">Instructions</div>
-                    <div>
-                        <div>Main</div>
+                    <TitleLabel text="INSTRUCTIONS" />
+                    <div class="flex flex-wrap gap-2">
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            AI-related</div>
                     </div>
                 </div>
                 <div>
-                    <div class="text-white">Operators</div>
-                    <div>
-                        <div>PumpFun NewToken</div>
+                    <TitleLabel text="OPERATORS" class="mt-4" />
+                    <div class="flex flex-wrap gap-2">
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            PumpFun NewToken</div>
                     </div>
                 </div>
                 <div>
-                    <div class="text-white">AI-bots</div>
-                    <div>
+                    <TitleLabel text="AI-BOTS" class="mt-4" />
+                    <div class="flex flex-wrap gap-2">
                         <div class="bg-green-500 w-5 h-5 rounded-sm"></div>
                     </div>
                 </div>
                 <div>
-                    <div class="text-white">Algorithms</div>
-                    <div>
-                        <div>X or Telegram presence</div>
+                    <TitleLabel text="ALGORITHMS" class="mt-4" />
+                    <div class="flex flex-wrap gap-2">
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            Uniqueness</div>
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            Rugcheck</div>
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            Website presence</div>
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            X or Telegram presence</div>
                     </div>
                 </div>
                 <div>
-                    <div class="text-white">Functions</div>
-                    <div>
-                        <div>Buy</div>
+                    <TitleLabel text="FUNCTIONS" class="mt-4" />
+                    <div class="flex flex-wrap gap-2">
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            Browser</div>
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            Crawler</div>
+                        <div
+                            class="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 transition-colors">
+                            Buy</div>
                     </div>
                 </div>
             </div>
