@@ -2,12 +2,13 @@ import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PumpFunOperator } from './operators/PumpFunOperator';
 import { CONFIG } from './config';
 import { TokenMetadata } from './types/tokenMetadata';
+import { WebSocket } from 'ws';
 
 @Injectable()
 export class TokenService implements OnModuleInit, OnModuleDestroy
 {
     private operator: PumpFunOperator;
-    private clients: Set<any> = new Set();
+    private clients: Set<WebSocket> = new Set();
 
     constructor()
     {
@@ -35,18 +36,22 @@ export class TokenService implements OnModuleInit, OnModuleDestroy
 
     private broadcastToken(token: TokenMetadata)
     {
+        const message = JSON.stringify({ type: 'newToken', data: token });
         this.clients.forEach(client =>
         {
-            client.emit('newToken', token);
+            if (client.readyState === WebSocket.OPEN)
+            {
+                client.send(message);
+            }
         });
     }
 
-    addClient(client: any)
+    addClient(client: WebSocket)
     {
         this.clients.add(client);
     }
 
-    removeClient(client: any)
+    removeClient(client: WebSocket)
     {
         this.clients.delete(client);
     }

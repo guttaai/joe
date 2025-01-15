@@ -1,43 +1,35 @@
-import
-{
-    WebSocketGateway,
-    WebSocketServer,
-    OnGatewayConnection,
-    OnGatewayDisconnect,
-    OnGatewayInit,
-} from '@nestjs/websockets';
-import { Server, Socket } from 'socket.io';
+import { WebSocketServer } from 'ws';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { TokenService } from './token.service';
 
-@WebSocketGateway({
-    cors: {
-        origin: '*',
-    },
-    transports: ['websocket'],
-    namespace: '/',
-    path: '/socket.io/',
-    serveClient: false,
-    pingInterval: 10000,
-    pingTimeout: 5000
-})
-export class TokenGateway implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit
+@Injectable()
+export class TokenGateway implements OnModuleInit
 {
-    private server!: Server;
+    private wsServer!: WebSocketServer;
 
-    constructor(private tokenService: TokenService) { }
+    constructor(private readonly tokenService: TokenService) { }
 
-    afterInit(server: Server)
+    onModuleInit()
     {
-        this.server = server;
-    }
+        this.wsServer = new WebSocketServer({ port: Number(process.env.WS_PORT) || 2050 });
+        console.log('WebSocket Gateway initialized on port:', process.env.WS_PORT || 2050);
 
-    handleConnection(client: Socket)
-    {
-        console.log(`Client connected: ${client.id}`);
-    }
+        this.wsServer.on('connection', (socket) =>
+        {
+            console.log('Client connected');
 
-    handleDisconnect(client: Socket)
-    {
-        console.log(`Client disconnected: ${client.id}`);
+            this.tokenService.addClient(socket);
+
+            socket.on('close', () =>
+            {
+                console.log('Client disconnected');
+                this.tokenService.removeClient(socket);
+            });
+
+            socket.on('error', (error) =>
+            {
+                console.error('WebSocket error:', error);
+            });
+        });
     }
 } 
