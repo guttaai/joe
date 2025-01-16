@@ -67,26 +67,22 @@ const getPumpFunUrl = (mint: string) => `https://pump.fun/coin/${mint}`;
                 </div>
             </div>
 
-            <div v-if="details.selectedToken.algorithmResults" class="space-y-2">
-                <div v-for="(result, index) in details.selectedToken.algorithmResults" :key="index"
-                    class="p-4 rounded-lg bg-gray-800/50">
-                    <div class="space-y-2">
-                        <div v-for="check in result.checks" :key="check.name"
-                            class="flex items-center gap-2 group relative">
-                            <CheckBadgeIcon v-if="check.status === 'success'" class="w-5 h-5 text-green-500" />
-                            <XCircleIcon v-else-if="check.status === 'failed'" class="w-5 h-5 text-red-500" />
-                            <ArrowPathIcon v-else class="w-5 h-5 text-orange-500 animate-spin" />
-                            <span class="text-sm" :class="{
-                                'text-orange-500': check.status === 'pending',
-                                'text-green-500': check.status === 'success',
-                                'text-red-500': check.status === 'failed'
-                            }">{{ check.message }}</span>
-                            <!-- Tooltip -->
-                            <div
-                                class="absolute left-0 -top-8 hidden group-hover:block bg-gray-900 text-white text-xs py-1 px-2 rounded">
-                                {{ check.name }}
-                            </div>
-                        </div>
+            <!-- Algorithm Results -->
+            <div v-if="details.selectedToken.algorithmResults" class="p-4 rounded-lg bg-gray-800/50 space-y-2">
+                <div v-for="check in details.selectedToken.algorithmResults.flatMap(result => result.checks)"
+                    :key="check.name" class="flex items-center gap-2 group relative">
+                    <CheckBadgeIcon v-if="check.status === 'success'" class="w-5 h-5 text-green-500" />
+                    <XCircleIcon v-else-if="check.status === 'failed'" class="w-5 h-5 text-red-500" />
+                    <ArrowPathIcon v-else class="w-5 h-5 text-orange-500 animate-spin" />
+                    <span class="text-sm" :class="{
+                        'text-orange-500': check.status === 'pending',
+                        'text-green-500': check.status === 'success',
+                        'text-red-500': check.status === 'failed'
+                    }">{{ check.message }}</span>
+                    <!-- Tooltip -->
+                    <div
+                        class="absolute left-0 -top-8 hidden group-hover:block bg-gray-900 text-white text-xs py-1 px-2 rounded">
+                        {{ check.name }}
                     </div>
                 </div>
             </div>
