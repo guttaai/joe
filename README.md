@@ -1,4 +1,6 @@
-# Agent
+# Joe Porject
+
+This project uses `@guttaai/core` to automatically invest in tokens on DEX exchanges using the latest AI technology for auditing.
 
 ## Quick Start
 
