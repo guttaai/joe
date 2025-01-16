@@ -1,5 +1,6 @@
 import { PumpFunOperator } from './operators/PumpFunOperator';
-import { ConnectionStatus } from './types/events';
+// import { ConnectionStatus } from './types/events';
+import { ConnectionStatus } from '@guttaai/core';
 import { TokenMetadata } from './types/tokenMetadata';
 import { CONFIG } from './config';
 

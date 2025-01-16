@@ -1,4 +1,5 @@
-import { BaseAlgorithm, AlgorithmResult } from '../core/algorithms/BaseAlgorithm';
+// import { BaseAlgorithm, AlgorithmResult } from '../core/algorithms/BaseAlgorithm';
+import { BaseAlgorithm, AlgorithmResult } from '@guttaai/core';
 import { TokenMetadata } from '../types/tokenMetadata';
 
 export class SocialLinksAlgorithm extends BaseAlgorithm

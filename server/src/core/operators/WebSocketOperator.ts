@@ -1,66 +1,69 @@
-import { BaseOperator } from './BaseOperator';
-import WebSocket from 'ws';
-import { ConnectionStatus } from '../../types/events';
+// // import { BaseOperator } from './BaseOperator';
+// import { BaseOperator } from '@guttaai/core';
 
-export abstract class WebSocketOperator extends BaseOperator
-{
-    protected ws: WebSocket | null = null;
-    protected url: string;
-    protected reconnectTimeout: number = 5000;
+// import WebSocket from 'ws';
+// // import { ConnectionStatus } from '../../types/events';
+// import { ConnectionStatus } from '@guttaai/core';
 
-    constructor(url: string)
-    {
-        super();
-        this.url = url;
-    }
+// export abstract class WebSocketOperator extends BaseOperator
+// {
+//     protected ws: WebSocket | null = null;
+//     protected url: string;
+//     protected reconnectTimeout: number = 5000;
 
-    protected setupWebSocket(): void
-    {
-        this.ws = new WebSocket(this.url);
+//     constructor(url: string)
+//     {
+//         super();
+//         this.url = url;
+//     }
 
-        this.ws.on('open', () =>
-        {
-            this.emit('connectionStatus', ConnectionStatus.CONNECTED);
-            this.onConnectionOpen();
-        });
+//     protected setupWebSocket(): void
+//     {
+//         this.ws = new WebSocket(this.url);
 
-        this.ws.on('message', (data: WebSocket.Data) =>
-        {
-            this.onMessage(data);
-        });
+//         this.ws.on('open', () =>
+//         {
+//             this.emit('connectionStatus', ConnectionStatus.CONNECTED);
+//             this.onConnectionOpen();
+//         });
 
-        this.ws.on('close', () =>
-        {
-            this.emit('connectionStatus', ConnectionStatus.DISCONNECTED);
-            if (this.isRunning)
-            {
-                setTimeout(() => this.setupWebSocket(), this.reconnectTimeout);
-            }
-        });
+//         this.ws.on('message', (data: WebSocket.Data) =>
+//         {
+//             this.onMessage(data);
+//         });
 
-        this.ws.on('error', (error: Error) =>
-        {
-            this.emit('error', error);
-            this.ws?.close();
-        });
-    }
+//         this.ws.on('close', () =>
+//         {
+//             this.emit('connectionStatus', ConnectionStatus.DISCONNECTED);
+//             if (this.isRunning)
+//             {
+//                 setTimeout(() => this.setupWebSocket(), this.reconnectTimeout);
+//             }
+//         });
 
-    protected abstract onConnectionOpen(): void;
-    protected abstract onMessage(data: WebSocket.Data): void;
+//         this.ws.on('error', (error: Error) =>
+//         {
+//             this.emit('error', error);
+//             this.ws?.close();
+//         });
+//     }
 
-    async start(): Promise<void>
-    {
-        this.isRunning = true;
-        this.setupWebSocket();
-    }
+//     protected abstract onConnectionOpen(): void;
+//     protected abstract onMessage(data: WebSocket.Data): void;
 
-    async stop(): Promise<void>
-    {
-        this.isRunning = false;
-        if (this.ws)
-        {
-            this.ws.close();
-            this.ws = null;
-        }
-    }
-} 
+//     async start(): Promise<void>
+//     {
+//         this.isRunning = true;
+//         this.setupWebSocket();
+//     }
+
+//     async stop(): Promise<void>
+//     {
+//         this.isRunning = false;
+//         if (this.ws)
+//         {
+//             this.ws.close();
+//             this.ws = null;
+//         }
+//     }
+// } 

@@ -4,7 +4,8 @@ import { CONFIG } from './config';
 import { TokenMetadata } from './types/tokenMetadata';
 import { WebSocket } from 'ws';
 import { SocialLinksAlgorithm } from './algorithms/SocialLinksAlgorithm';
-import { AlgorithmResult } from './core/algorithms/BaseAlgorithm';
+// import { AlgorithmResult } from './core/algorithms/BaseAlgorithm';
+import { AlgorithmResult } from '@guttaai/core';
 
 interface TokenWithAlgorithms extends TokenMetadata
 {
