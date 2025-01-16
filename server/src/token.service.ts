@@ -6,6 +6,7 @@ import { TokenMetadata } from './types/tokenMetadata';
 import { PumpFunOperator } from './operators/PumpFunOperator';
 import { SocialLinksAlgorithm } from './algorithms/SocialLinksAlgorithm';
 import { TelegramLinkAlgorithm } from './algorithms/TelegramLinkAlgorithm';
+import { TwitterLinkAlgorithm } from './algorithms/TwitterLinkAlgorithm';
 
 interface TokenWithAlgorithms extends TokenMetadata
 {
@@ -19,7 +20,8 @@ export class TokenService implements OnModuleInit, OnModuleDestroy
     private clients: Set<WebSocket> = new Set();
     private algorithms = [
         new SocialLinksAlgorithm(),
-        new TelegramLinkAlgorithm()
+        new TelegramLinkAlgorithm(),
+        new TwitterLinkAlgorithm()
     ];
 
     constructor()
