@@ -1,11 +1,10 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
-import { PumpFunOperator } from './operators/PumpFunOperator';
+import { AlgorithmResult } from '@guttaai/core';
+import { WebSocket } from 'ws';
 import { CONFIG } from './config';
 import { TokenMetadata } from './types/tokenMetadata';
-import { WebSocket } from 'ws';
+import { PumpFunOperator } from './operators/PumpFunOperator';
 import { SocialLinksAlgorithm } from './algorithms/SocialLinksAlgorithm';
-// import { AlgorithmResult } from './core/algorithms/BaseAlgorithm';
-import { AlgorithmResult } from '@guttaai/core';
 
 interface TokenWithAlgorithms extends TokenMetadata
 {

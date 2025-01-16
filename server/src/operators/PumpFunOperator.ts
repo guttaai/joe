@@ -1,6 +1,4 @@
-// import { WebSocketOperator } from '../core/operators/WebSocketOperator';
 import { WebSocketOperator } from '@guttaai/core';
-// import { ConnectionStatus } from '../types/events';
 import { ConnectionStatus } from '@guttaai/core';
 import WebSocket from 'ws';
 import { TokenMetadata } from '../types/tokenMetadata';
