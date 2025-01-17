@@ -31,7 +31,9 @@ const getBackgroundClass = (token: TokenMetadata) =>
         <div class="flex items-center justify-start gap-2 text-lg">
             <span class="font-semibold text-blue-100">{{ token.symbol }}</span>
             <span class="text-gray-700">•</span>
-            <span class="text-gray-500">{{ token.name }}</span>
+            <span
+                class="text-gray-500 truncate flex-1 relative after:absolute after:right-0 after:top-0 after:h-full after:w-12 after:bg-gradient-to-r after:from-transparent after:to-transparent">{{
+                token.name }}</span>
         </div>
     </div>
 </template>
