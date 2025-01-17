@@ -7,6 +7,7 @@ import { PumpFunOperator } from './operators/PumpFunOperator';
 import { SocialLinksAlgorithm } from './algorithms/SocialLinksAlgorithm';
 import { TelegramLinkAlgorithm } from './algorithms/TelegramLinkAlgorithm';
 import { TwitterLinkAlgorithm } from './algorithms/TwitterLinkAlgorithm';
+import { BlacklistDomainAlgorithm } from './algorithms/BlacklistDomainAlgorithm';
 
 interface TokenWithAlgorithms extends TokenMetadata
 {
@@ -21,7 +22,8 @@ export class TokenService implements OnModuleInit, OnModuleDestroy
     private algorithms = [
         new SocialLinksAlgorithm(),
         new TelegramLinkAlgorithm(),
-        new TwitterLinkAlgorithm()
+        new TwitterLinkAlgorithm(),
+        new BlacklistDomainAlgorithm()
     ];
 
     constructor()
