@@ -32,15 +32,19 @@ export class TwitterLinkAlgorithm extends BaseAlgorithm
         {
             const url = new URL(token.twitter);
             const isValidDomain = url.hostname === 'twitter.com' || url.hostname === 'x.com';
+            const hasNoStatus = !url.pathname.includes('/status/');
+            const isValid = isValidDomain && hasNoStatus;
 
-            checks[0].status = isValidDomain ? 'success' : 'failed';
-            checks[0].message = isValidDomain
+            checks[0].status = isValid ? 'success' : 'failed';
+            checks[0].message = isValid
                 ? 'Valid Twitter domain'
-                : 'Invalid Twitter domain';
+                : isValidDomain
+                    ? 'Twitter URL cannot contain /status/'
+                    : 'Invalid Twitter domain';
 
             return {
-                passed: isValidDomain,
-                criticalCheckFailed: !isValidDomain,
+                passed: isValid,
+                criticalCheckFailed: !isValid,
                 checks
             };
         } catch (error)
