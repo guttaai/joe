@@ -17,7 +17,10 @@ export class BlacklistDomainAlgorithm extends BaseAlgorithm
         'google.com',
         'pump.fun',
         'facebook.com',
-        'instagram.com'
+        'instagram.com',
+        'discord.com',
+        'discord.gg',
+        'wikipedia.org',
     ];
 
     async execute(token: TokenMetadata): Promise<AlgorithmResult>
