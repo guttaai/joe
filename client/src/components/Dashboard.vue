@@ -37,7 +37,7 @@ const handleTokenSelect = (token: TokenMetadata) =>
                     </div>
                 </div>
                 <div>
-                    <TitleLabel text="AI-BOTS" class="mt-4" />
+                    <TitleLabel text="AGENTS" class="mt-4" />
                     <div class="flex flex-wrap gap-2">
                         <div class="bg-green-500 w-5 h-5 rounded-sm"></div>
                     </div>
