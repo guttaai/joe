@@ -8,6 +8,7 @@ import { SocialLinksAlgorithm } from './algorithms/SocialLinksAlgorithm';
 import { TelegramLinkAlgorithm } from './algorithms/TelegramLinkAlgorithm';
 import { TwitterLinkAlgorithm } from './algorithms/TwitterLinkAlgorithm';
 import { BlacklistDomainAlgorithm } from './algorithms/BlacklistDomainAlgorithm';
+import { WhitelistDomainZoneAlgorithm } from './algorithms/WhitelistDomainZoneAlgorithm';
 
 interface TokenWithAlgorithms extends TokenMetadata
 {
@@ -23,7 +24,8 @@ export class TokenService implements OnModuleInit, OnModuleDestroy
         new SocialLinksAlgorithm(),
         new TelegramLinkAlgorithm(),
         new TwitterLinkAlgorithm(),
-        new BlacklistDomainAlgorithm()
+        new BlacklistDomainAlgorithm(),
+        new WhitelistDomainZoneAlgorithm()
     ];
 
     constructor()
