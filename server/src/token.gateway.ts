@@ -11,7 +11,14 @@ export class TokenGateway implements OnModuleInit
 
     onModuleInit()
     {
-        this.wsServer = new WebSocketServer({ port: Number(process.env.WS_PORT) || 2050 });
+        this.wsServer = new WebSocketServer({
+            port: Number(process.env.WS_PORT) || 2050,
+            verifyClient: (info, callback) =>
+            {
+                const origin = info.origin || info.req.headers.origin;
+                callback(true);
+            }
+        });
         console.log('WebSocket Gateway initialized on port:', process.env.WS_PORT || 2050);
 
         this.wsServer.on('connection', (socket) =>

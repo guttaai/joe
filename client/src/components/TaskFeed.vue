@@ -21,7 +21,8 @@ const handleTokenClick = (token: TokenMetadata) =>
 
 const connect = () =>
 {
-    ws.value = new WebSocket('ws://localhost:2050');
+    const wsUrl = `ws://${window.location.hostname}:2050`;
+    ws.value = new WebSocket(wsUrl);
 
     ws.value.onopen = () =>
     {
