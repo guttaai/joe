@@ -119,11 +119,11 @@ const setAmount = (value: number) =>
                     </div>
                 </div>
 
-                <!-- Positions Block -->
+                <!-- Transactions Block -->
                 <div class="bg-gray-950 rounded-lg p-4 flex-1 overflow-y-auto">
-                    <TitleLabel text="POSITIONS" />
+                    <TitleLabel text="TRANSACTIONS" />
                     <div class="mt-4 flex items-center justify-center h-[calc(100%-2rem)] text-gray-500">
-                        No active positions
+                        No transactions
                     </div>
                 </div>
             </div>
