@@ -4,18 +4,19 @@ import TaskFeed from './TaskFeed.vue';
 import Details from './Details.vue';
 import type { TokenMetadata } from '../../../server/src/types/tokenMetadata';
 import TitleLabel from './TitleLabel.vue';
+import TradeBlock from './TradeBlock.vue';
 
 const selectedToken = ref<TokenMetadata | null>(null);
-const amount = ref<number>(0);
 
 const handleTokenSelect = (token: TokenMetadata) =>
 {
+    console.log('Token selected:', token);
     selectedToken.value = token;
 };
 
-const setAmount = (value: number) =>
+const handleBuy = () =>
 {
-    amount.value = value;
+    console.log('Buy clicked, token:', selectedToken.value);
 };
 </script>
 
@@ -94,30 +95,7 @@ const setAmount = (value: number) =>
             <!-- Trade and Positions Column -->
             <div class="flex flex-col gap-1">
                 <!-- Trade Block -->
-                <div class="bg-gray-950 rounded-lg p-4">
-                    <TitleLabel text="TRADE" />
-                    <div class="space-y-4">
-                        <!-- Amount Input -->
-                        <div>
-                            <input type="number" v-model="amount" step="0.01" placeholder="Amount"
-                                class="w-full px-3 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-blue-500" />
-                        </div>
-
-                        <!-- Quick Amount Buttons -->
-                        <div class="flex gap-2">
-                            <button v-for="quickAmount in [0.01, 0.05, 0.1]" :key="quickAmount"
-                                @click="setAmount(quickAmount)"
-                                class="flex-1 px-2 py-1 text-sm bg-gray-900 border border-gray-800 rounded-md hover:bg-gray-800 transition-colors">
-                                {{ quickAmount }}
-                            </button>
-                        </div>
-
-                        <!-- Buy Button -->
-                        <button class="w-full px-4 py-2 bg-green-700 hover:bg-green-800 rounded-md transition-colors">
-                            Buy
-                        </button>
-                    </div>
-                </div>
+                <TradeBlock :selectedToken="selectedToken" @buy="handleBuy" />
 
                 <!-- Transactions Block -->
                 <div class="bg-gray-950 rounded-lg p-4 flex-1 overflow-y-auto">
@@ -132,18 +110,6 @@ const setAmount = (value: number) =>
 </template>
 
 <style scoped>
-/* Completely hide the input spinner arrows in WebKit browsers */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Hide spinner arrows in Firefox */
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
 }
