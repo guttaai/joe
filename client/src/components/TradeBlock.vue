@@ -29,9 +29,29 @@ const handleInput = (e: Event) =>
     amount.value = Number(target.value);
 };
 
-const handleBuy = () =>
+const handleBuy = async () =>
 {
-    console.log('Buy clicked, token:', props.selectedToken, 'Amount:', amount.value);
+    if (!props.selectedToken) return;
+
+    try
+    {
+        const response = await fetch(`http://${window.location.hostname}:3000/trade`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                amount: amount.value,
+                mintAddress: props.selectedToken.mint,
+            }),
+        });
+
+        const data = await response.json();
+        console.log('Trade response:', data);
+    } catch (error)
+    {
+        console.error('Error executing trade:', error);
+    }
 };
 </script>
 
