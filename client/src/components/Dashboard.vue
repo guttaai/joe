@@ -5,8 +5,18 @@ import Details from './Details.vue';
 import type { TokenMetadata } from '../../../server/src/types/tokenMetadata';
 import TitleLabel from './TitleLabel.vue';
 import TradeBlock from './TradeBlock.vue';
+import TransactionItem from './TransactionItem.vue';
+
+interface Transaction
+{
+    signature: string;
+    status: 'success' | 'pending' | 'error';
+    timestamp: number;
+    tokenSymbol: string;
+}
 
 const selectedToken = ref<TokenMetadata | null>(null);
+const transactions = ref<Transaction[]>([]);
 
 const handleTokenSelect = (token: TokenMetadata) =>
 {
@@ -14,9 +24,9 @@ const handleTokenSelect = (token: TokenMetadata) =>
     selectedToken.value = token;
 };
 
-const handleBuy = () =>
+const handleTransaction = (transaction: Transaction) =>
 {
-    console.log('Buy clicked, token:', selectedToken.value);
+    transactions.value.unshift(transaction);
 };
 </script>
 
@@ -95,12 +105,15 @@ const handleBuy = () =>
             <!-- Trade and Positions Column -->
             <div class="flex flex-col gap-1">
                 <!-- Trade Block -->
-                <TradeBlock :selectedToken="selectedToken" @buy="handleBuy" />
+                <TradeBlock :selectedToken="selectedToken" @transaction="handleTransaction" />
 
                 <!-- Transactions Block -->
                 <div class="bg-gray-950 rounded-lg p-4 flex-1 overflow-y-auto">
                     <TitleLabel text="TRANSACTIONS" />
-                    <div class="mt-4 flex items-center justify-center h-[calc(100%-2rem)] text-gray-500">
+                    <div v-if="transactions.length > 0" class="mt-4">
+                        <TransactionItem v-for="tx in transactions" :key="tx.signature" v-bind="tx" />
+                    </div>
+                    <div v-else class="mt-4 flex items-center justify-center h-[calc(100%-2rem)] text-gray-500">
                         No transactions
                     </div>
                 </div>

@@ -44,15 +44,21 @@ export class TradeController
                 return {
                     status: 'success',
                     data: {
+                        amount,
+                        mintAddress,
                         signature: result.signature,
                     }
                 };
             } else
             {
-                console.error('Trade execution error:', result);
+                console.error('Trade execution not successful yet:', result);
                 return {
-                    status: 'error',
-                    error: result.error
+                    status: 'pending',
+                    data: {
+                        amount,
+                        mintAddress,
+                        signature: result.signature,
+                    }
                 };
             }
 

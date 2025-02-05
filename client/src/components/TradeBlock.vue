@@ -9,6 +9,9 @@ interface Props
 }
 
 const props = defineProps<Props>();
+const emit = defineEmits<{
+    transaction: [{ signature: string; status: 'success' | 'pending' | 'error'; timestamp: number; tokenSymbol: string; }]
+}>();
 
 const isTokenSelected = computed(() =>
 {
@@ -48,9 +51,44 @@ const handleBuy = async () =>
 
         const data = await response.json();
         console.log('Trade response:', data);
+
+        if (data.status === 'error')
+        {
+            emit('transaction', {
+                signature: data.error || 'Unknown error',
+                status: 'error',
+                timestamp: Date.now(),
+                tokenSymbol: props.selectedToken.symbol,
+            });
+            return;
+        }
+
+        if (!data.data?.signature || data.data.signature === 'unknown')
+        {
+            emit('transaction', {
+                signature: 'Bonding curve not found yet',
+                status: 'error',
+                timestamp: Date.now(),
+                tokenSymbol: props.selectedToken.symbol,
+            });
+            return;
+        }
+
+        emit('transaction', {
+            signature: data.data.signature,
+            status: data.status,
+            timestamp: Date.now(),
+            tokenSymbol: props.selectedToken.symbol,
+        });
     } catch (error)
     {
         console.error('Error executing trade:', error);
+        emit('transaction', {
+            signature: (error as Error).message || 'Unknown error occurred',
+            status: 'error',
+            timestamp: Date.now(),
+            tokenSymbol: props.selectedToken.symbol,
+        });
     }
 };
 </script>
