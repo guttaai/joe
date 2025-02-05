@@ -20,6 +20,7 @@ const isTokenSelected = computed(() =>
 });
 
 const amount = ref<number>(0);
+const isLoading = ref(false);
 
 const setAmount = (value: number) =>
 {
@@ -34,7 +35,9 @@ const handleInput = (e: Event) =>
 
 const handleBuy = async () =>
 {
-    if (!props.selectedToken) return;
+    if (!props.selectedToken || isLoading.value) return;
+
+    isLoading.value = true;
 
     try
     {
@@ -89,6 +92,9 @@ const handleBuy = async () =>
             timestamp: Date.now(),
             tokenSymbol: props.selectedToken.symbol,
         });
+    } finally
+    {
+        isLoading.value = false;
     }
 };
 </script>
@@ -99,24 +105,31 @@ const handleBuy = async () =>
         <div class="space-y-4">
             <!-- Amount Input -->
             <div>
-                <input type="number" :value="amount" @input="handleInput" :disabled="!isTokenSelected" step="0.01"
-                    placeholder="Amount"
+                <input type="number" :value="amount" @input="handleInput" :disabled="!isTokenSelected || isLoading"
+                    step="0.01" placeholder="Amount"
                     class="w-full px-3 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-blue-500" />
             </div>
 
             <!-- Quick Amount Buttons -->
             <div class="flex gap-2">
                 <button v-for="quickAmount in [0.01, 0.05, 0.1]" :key="quickAmount" @click="setAmount(quickAmount)"
-                    :disabled="!isTokenSelected"
-                    class="flex-1 px-2 py-1 text-sm bg-gray-900 border border-gray-800 rounded-md hover:bg-gray-800 transition-colors">
+                    :disabled="!isTokenSelected || isLoading"
+                    class="flex-1 px-2 py-1 text-sm bg-gray-900 border border-gray-800 rounded-md hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                     {{ quickAmount }}
                 </button>
             </div>
 
             <!-- Buy Button -->
-            <button @click="handleBuy" :disabled="!isTokenSelected"
-                class="w-full px-4 py-2 bg-green-700 hover:bg-green-800 rounded-md transition-colors">
-                Buy
+            <button @click="handleBuy" :disabled="!isTokenSelected || isLoading"
+                class="w-full px-4 py-2 bg-green-700 hover:bg-green-800 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+                <svg v-if="isLoading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                    </path>
+                </svg>
+                {{ isLoading ? 'Processing...' : 'Buy' }}
             </button>
         </div>
     </div>
