@@ -21,6 +21,8 @@ cp server/.env.example server/.env
 docker compose up -d --build
 ```
 
+Open the client in your browser: http://localhost:5173
+
 #### Useful Commands
 
 ```bash
