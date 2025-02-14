@@ -1,19 +1,8 @@
 version: '3.8'
 
 services:
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    environment:
-      - VITE_API_URL=http://localhost:3000
-
   server:
+    container_name: joe-server
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -25,3 +14,19 @@ services:
       - /app/node_modules
     env_file:
       - ./server/.env 
+
+  client:
+    container_name: joe-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - server
+      
