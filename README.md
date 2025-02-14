@@ -8,21 +8,25 @@ This project uses `@guttaai/core` to automatically invest in tokens on DEX excha
 
 For quick start, you can use [Docker](https://www.docker.com/) to run the project.
 
+Here are the steps to run the project:
+
 ```bash
-# Navigate to the project root
+# Step 1: Navigate to the project root
 cd joe
 
-# Build and start the containers
+# Step 2: Copy the .env.example file to .env and fill in the required variables
+cp server/.env.example server/.env
+
+# Step 3: Build and start the containers
 docker compose up -d --build
-
-# Stop the containers
-docker compose down
 ```
-
 
 #### Useful Commands
 
 ```bash
+# Stop the containers (run in the project root)
+docker compose down
+
 # Enter the server container
 docker exec -it joe-server sh
 
